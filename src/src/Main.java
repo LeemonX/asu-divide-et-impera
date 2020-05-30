@@ -18,7 +18,8 @@ public class Main {
         arrayMethods.print(intArray);
         arrayMethods.sort(intArray);
         arrayMethods.print(intArray);
-        arrayMethods.search(intArray, key, 0, n-1);
+        int output = arrayMethods.search(intArray, key, 0, n-1);
+        System.out.println(output);
         sc.close();
     }
 }
