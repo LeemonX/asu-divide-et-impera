@@ -1,2 +1,2 @@
-# asu-narrow-search
+# asu-divide-et-impera
 Лабораторная работа. Поиск с сужением зоны.
