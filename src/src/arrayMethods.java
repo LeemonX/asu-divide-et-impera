@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class arrayMethods
 {
@@ -30,25 +31,55 @@ public class arrayMethods
         System.out.println();
     }
 
-    public static void fill(int[] arr, int bound){
-        Random rnd = new Random();
-        for(int i = 0; i < arr.length; i++)
-            arr[i] = rnd.nextInt(bound);
+    public static void fill(int[] arr){
+        Scanner num = new Scanner(System.in);
+
+        System.out.println("Enter '0' for manual input");
+        if (num.nextInt() == 0) {
+            for (int i = 0; i < arr.length; i++) {
+                System.out.println("Element: " + i);
+                arr[i] = num.nextInt();
+            }
+        }
+        else{
+            Random rnd = new Random();
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = rnd.nextInt(20);
+            }
+        }
+        num.close();
     }
 
-    public static int search(int[] arr, int key, int left, int right){
-        if (left >= right)
-            return arr[left] == key ? left : -1;
 
-        int mid = (left+right)/2;
-
-        if(arr[mid] == key)
-            return mid;
-
-        if(arr[mid] < key) {
-            return search(arr, key, left, mid - 1);
-        }else {
-            return search(arr, key, mid + 1, right);
+    public static int leftSideSearch(int[] arr, int key){
+        int left = -1;
+        int right = arr.length;
+        while (left < right -1){
+            int mid = (left + right)/2;
+            if (arr[mid] < key)
+                left = mid;
+            else
+                right = mid;
         }
+        if(arr[right] == key)
+            return right;
+        else
+            return -1;
+    }
+
+    public static int rightSideSearch(int[] arr, int key){
+        int left = 0;
+        int right = arr.length;
+        while (left < right -1){
+            int mid = (left + right)/2;
+            if (arr[mid] <= key)
+                left = mid;
+            else
+                right = mid;
+        }
+        if(arr[right-1] == key)
+            return right-1;
+        else
+            return -1;
     }
 }
